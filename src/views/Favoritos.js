@@ -37,7 +37,7 @@ function Favoritos() {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white pb-10">
+    <div className="bg-black min-h-screen text-white pb-10 dark:bg-white dark:text-black">
       <Nav />
       <div className="pt-[90px] grid justify-items-center">
         <div className="mt-10 py-2 w-full text-center font-bold text-2xl bg-gradient-to-r from-black via-red-600 to-black">
@@ -48,7 +48,7 @@ function Favoritos() {
           {movies?.map((element) => (
             <div className="w-full" key={element.id}>
               <div
-                className={`flex gap-2 px-4 py-4 justify-center border-2 border-white`}
+                className={`flex gap-2 px-4 py-4 justify-center border-2 border-white dark:border-black`}
               >
                 <img
                   src={`/imagenesMovie/background/poster/${element.photo_url}.webp`}
@@ -87,7 +87,7 @@ function Favoritos() {
                     </button>
                     <button
                       type="button"
-                      className="bg-white px-2 h-[30px] text-black"
+                      className="bg-white px-2 h-[30px] text-black dark:text-white dark:bg-black"
                       onClick={() =>
                         handleViewMoreInformation(element.id_movie)
                       }

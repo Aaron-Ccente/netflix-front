@@ -75,7 +75,7 @@ function Movie() {
   };
 
   return (
-    <div className="relative min-h-screen  text-white bg-black">
+    <div className="relative min-h-screen  text-white bg-black dark:bg-white">
       {/* Componente de navegación */}
       <Nav />
 

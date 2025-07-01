@@ -30,7 +30,7 @@ function Home() {
 
   return (
     
-    <div className="relative min-h-screen bg-black text-white">
+    <div className="relative min-h-screen bg-black text-white dark:bg-white">
       <Nav/>
       <div className="pt-[90px] text-white">
         <div className="flex items-center justify-center">
