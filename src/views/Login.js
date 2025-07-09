@@ -31,8 +31,12 @@ function Login() {
         .then((res) => {
           if (res.data.message === "Success") {
             login(res.data.user);
-            console.log(res.data.user);
-            navigate("/home");
+            if(res.data.user.role === "usuario"){
+              navigate("/home");
+            }
+            else if(res.data.user.role === "administrador"){
+              navigate("/dashboard");
+            }
           } else {
             alert("La cuenta no existe.");
           }

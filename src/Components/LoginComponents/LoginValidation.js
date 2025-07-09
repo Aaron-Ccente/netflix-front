@@ -1,9 +1,8 @@
 export function validation(values){
     let error = {}
     const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-    const password_pattern = /^(?=.*\d)(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
-
+    const password_pattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[^a-zA-Z0-9])[a-zA-Z0-9\W]{8,}$/;
+    
     if(values.email === ""){
         error.email = "El correo electrónico no debe estar vacio"
     }
