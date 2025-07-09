@@ -1,4 +1,3 @@
-
 import './App.css';
 import Favoritos from './views/Favoritos';
 import Home from './views/Home';
@@ -9,6 +8,13 @@ import ScrollToTop from './ScrollToTop';
 import Signup from './views/Signup';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
+import DashboardAdmin from './views/DashboardAdmin';
+import UsuariosPage from './Components/Dashboard/Usuarios/page';
+import ActoresPage from './Components/Dashboard/Actores/page';
+import CategoriasPage from './Components/Dashboard/Categorias/page';
+import EstadisticasPage from './Components/Dashboard/Estadisticas/page';
+import PeliculasPage from './Components/Dashboard/Peliculas/page';
+import ProductoresPage from './Components/Dashboard/Productores/page';
 
 function App() {
   return (
@@ -25,6 +31,15 @@ function App() {
         <Route path='/movie/:id' element={<ProtectedRoute><Movie/></ProtectedRoute>}/>
         {/* Ruta para favoritos, peliculas guardadas por el usuario. */}
         <Route path='/favoritos' element={<ProtectedRoute><Favoritos/></ProtectedRoute>}/>
+        {/* Ruta para el dashboard del adminitrador. */}
+        <Route path='/dashboard' element={<ProtectedRoute><DashboardAdmin/></ProtectedRoute>}>
+          <Route path='usuarios' element={<UsuariosPage />} />
+          <Route path='actores' element={<ActoresPage />} />
+          <Route path='categorias' element={<CategoriasPage />} />
+          <Route path='estadisticas' element={<EstadisticasPage />} />
+          <Route path='productores' element={<ProductoresPage />} />
+          <Route path='peliculas' element={<PeliculasPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
