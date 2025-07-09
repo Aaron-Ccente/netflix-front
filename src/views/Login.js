@@ -18,6 +18,7 @@ function Login() {
       ...prev,
       [event.target.name]: [event.target.value],
     }));
+    setErrors('')
   };
   const handleSubmit = (event) => {
     event.preventDefault();
