@@ -15,6 +15,7 @@ import CategoriasPage from './Components/Dashboard/Categorias/page';
 import EstadisticasPage from './Components/Dashboard/Estadisticas/page';
 import PeliculasPage from './Components/Dashboard/Peliculas/page';
 import ProductoresPage from './Components/Dashboard/Productores/page';
+import DashbordPage from './Components/Dashboard/page';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path='/favoritos' element={<ProtectedRoute><Favoritos/></ProtectedRoute>}/>
         {/* Ruta para el dashboard del adminitrador. */}
         <Route path='/dashboard' element={<ProtectedRoute><DashboardAdmin/></ProtectedRoute>}>
+          <Route path='inicio' element={<DashbordPage />} />
           <Route path='usuarios' element={<UsuariosPage />} />
           <Route path='actores' element={<ActoresPage />} />
           <Route path='categorias' element={<CategoriasPage />} />
