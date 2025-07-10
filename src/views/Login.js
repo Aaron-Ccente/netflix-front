@@ -35,7 +35,7 @@ function Login() {
               navigate("/home");
             }
             else if(res.data.user.role === "administrador"){
-              navigate("/dashboard");
+              navigate("/dashboard/inicio");
             }
           } else {
             alert("La cuenta no existe.");

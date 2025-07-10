@@ -13,6 +13,7 @@ function Signup() {
     email: "",
     password: "",
     role: "usuario",
+    phone: 0
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -45,8 +46,12 @@ function Signup() {
             .then((res) => {
               if (res.data.message === "Success") {
                 login(res.data.user);
-                console.log(res.data.user);
-                navigate("/home");
+                if(res.data.user.role === "usuario"){         
+              navigate("/home");
+                  }
+                  else if(res.data.user.role === "administrador"){
+                    navigate("/dashboard/inicio");
+                  }
               } else {
                 alert("La cuenta no existe.");
               }
@@ -116,6 +121,22 @@ function Signup() {
               <span className="text-red-600">{errors.password}</span>
             )}
           </div>
+          <div className="mb-3 flex flex-col gap-4">
+            <label htmlFor="phone">
+              <strong>Número de celular</strong>
+            </label>
+            <input
+              type="number"
+              placeholder="900000000"
+              name="phone"
+              id="phone"
+              onChange={handleInput}
+              min={900000000}
+              max={999999999}
+              className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
+            />
+            
+          </div>
           <div className="flex justify-center gap-4">
             <label>
               <input
@@ -125,7 +146,7 @@ function Signup() {
                 checked={values.role === "usuario"}
                 onChange={handleInput}
               />
-              Usuario
+              usuario
             </label>
 
             <label>
@@ -136,7 +157,7 @@ function Signup() {
                 checked={values.role === "administrador"}
                 onChange={handleInput}
               />
-              Administrador
+              administrador
             </label>
           </div>
           <button
