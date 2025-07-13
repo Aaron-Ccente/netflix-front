@@ -134,18 +134,18 @@ function AddNewUser({ viewModal }) {
           </div>  
           <div className="flex items-center justify-center gap-4">
             <button
-            type="submit"
-             className="px-4 py-2 border-2 border-red-900 hover:bg-white hover:text-red-900 text-white rounded"
-            >
-            <strong>Crear Cuenta</strong>
-            </button>
-            <button
             type="button"
             onClick={viewModal}
              className="px-4 py-2 border-2 border-white/40 bg-red-900 hover:bg-white hover:text-red-900 text-white rounded "
             >
             <strong>Cancelar</strong>
             </button>
+            <button
+            type="submit"
+             className="px-4 py-2 border-2 border-red-900 hover:bg-white hover:text-red-900 text-white rounded"
+            >
+            <strong>Crear Cuenta</strong>
+            </button>     
           </div>
         </form>
     </div>
