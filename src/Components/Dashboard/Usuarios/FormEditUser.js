@@ -131,17 +131,17 @@ function FormEditUser({ data, viewModal, onClose }) {
         </div>
         <div className="flex justify-center gap-6 pt-4">
           <button
-            type="submit"
-            className="border-2 border-red-900 px-4 py-1 font-bold rounded-lg hover:bg-white hover:text-red-900"
-          >
-            Actualizar
-          </button>
-          <button
             onClick={onClose}
             type="button"
             className="border-2 border-white/40 px-4 py-1 bg-red-900 font-bold rounded-lg hover:bg-white hover:text-red-900"
           >
             Cancelar
+          </button>
+          <button
+            type="submit"
+            className="border-2 border-red-900 px-4 py-1 font-bold rounded-lg hover:bg-white hover:text-red-900"
+          >
+            Actualizar
           </button>
         </div>
       </form>
