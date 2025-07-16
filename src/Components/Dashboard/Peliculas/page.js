@@ -1,39 +1,42 @@
 import React from 'react'
 import EditIcon from 'Icons/EditIcon';
 import DeleteIcon from 'Icons/DeleteIcon';
-function page() {
+function Page() {
   return (
     <div className="p-8">
-      <h2 className="text-2xl font-bold mb-6">Lista de Usuarios</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full  text-black border-separate border-spacing-y-4">
-          <thead className='shadow-md shadow-red-600 bg-white rounded-tl-3xl rounded-tr-3xl'>
+      <h2 className="text-2xl font-bold mb-6 text-[#e2e5e5]">Lista de Películas</h2>
+      <div className="overflow-x-auto mt-4">
+        <table className="min-w-full border-separate">
+          <thead className='text-[#2ec7bc] bg-[#0c161e] rounded-tl-3xl rounded-tr-3xl '>
             <tr>
-              <th className="py-2 px-4 rounded-tl-3xl">ID</th>
-              <th className="py-2 px-4 ">Título</th>
-              <th className="py-2 px-4 ">Descripción</th>
-              <th className="py-2 px-4 rounded-tr-3xl">Acciones</th>
+              <th className="py-2 px-4 rounded-tl-3xl border-t-2 border-l-2 border-b-2 border-[#334155]">ID</th>
+              <th className="py-2 px-4 border-t-2 border-l-2 border-b-2 border-[#334155]">Título</th>
+              <th className="py-2 px-4 border-t-2 border-l-2 border-b-2 border-[#334155]">Descripción</th>
+              <th className="py-2 px-4 rounded-tr-3xl border-2 border-[#334155]">Acciones</th>
             </tr>
           </thead>
-          <tbody className='bg-white'>
-            <tr className="border-b border-gray-300">
-              <td className="py-2 px-4 text-center">1</td>
-              <td className="py-2 px-4 text-center">juanperez@gmail.com</td>
-              <td className="py-2 px-4 text-center">987654321</td>
-              <td className="py-2 px-4 text-center flex justify-center">
-                <button className="bg-blue-600 text-white px-3 py-1 w-fit rounded mr-2 flex"><EditIcon/>Editar</button>
-                <button className="bg-red-600 text-white px-3 py-1 rounded flex"><DeleteIcon/>Eliminar</button>
+          <tbody className='bg-[#0c161e] text-[#e2e5e5]'>
+            {/* Ejemplo de filas, reemplazar por el mapeo real de películas */}
+            <tr>
+              <td className="py-2 px-4 text-center border-l-2 border-b-2 border-[#334155]">1</td>
+              <td className="py-2 px-4 text-center border-l-2 border-b-2 border-[#334155]">Título de ejemplo</td>
+              <td className="py-2 px-4 text-center border-l-2 border-b-2 border-[#334155]">Descripción de ejemplo</td>
+              <td className="py-2 px-4 text-center flex justify-center border-x-2 border-b-2 border-[#334155]">
+                <button className="relative bg-[#1b3341] text-[#e2e5e5] px-3 py-2 w-fit rounded mr-2 flex items-center gap-2 hover:scale-105 transition-transform
+                after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#2ec7bc] after:origin-center after:transition-all after:duration-300
+                hover:after:left-0 hover:after:w-full">
+                <EditIcon />
+                Editar
+                </button>
+                <button className="relative bg-[#1b3341] text-[#f52926] px-3 py-2 rounded flex items-center gap-2 hover:scale-105 transition-transform
+                  after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#f52926] after:origin-center after:transition-all after:duration-300
+                  hover:after:left-0 hover:after:w-full">
+                  <DeleteIcon />
+                  Eliminar
+                </button>
               </td>
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="py-2 px-4 text-center">1</td>
-              <td className="py-2 px-4 text-center">juanperez@gmail.com</td>
-              <td className="py-2 px-4 text-center">987654321</td>
-              <td className="py-2 px-4 text-center flex justify-center">
-                <button className="bg-blue-600 text-white px-3 py-1 w-fit rounded mr-2 flex"><EditIcon/>Editar</button>
-                <button className="bg-red-600 text-white px-3 py-1 rounded flex"><DeleteIcon/>Eliminar</button>
-              </td>
-            </tr>
+            {/* ...más filas aquí... */}
           </tbody>
         </table>
       </div>
@@ -41,4 +44,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
