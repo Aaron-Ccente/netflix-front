@@ -44,8 +44,8 @@ function AddNewUser({ viewModal }) {
   return (
     <div className="w-full z-50 min-h-screen bg-black/40 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         
-        <form action="" onSubmit={handleSubmit} className="bg-black/80 shadow-xl shadow-white border-4 border-white py-10 px-8 rounded-lg w-fit text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <p className='text-2xl font-bold pb-4 px-20 text-red-700'>Crear nuevo usuario</p>
+        <form action="" onSubmit={handleSubmit} className="bg-[#0c161e] border-2 border-[#334155] py-10 px-8 rounded-lg w-fit text-[#e2e5e5] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <p className='text-2xl font-bold pb-4 px-20 text-[#2ec7bc]'>Crear nuevo usuario</p>
           <div className="mb-3 flex flex-col gap-4 ">
             <label htmlFor="name">
               <strong>Nombre</strong>
@@ -56,7 +56,7 @@ function AddNewUser({ viewModal }) {
               onChange={handleInput}
               name="name"
               id="name"
-               className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
+              className="p-2 border-2 border-[#334155] bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded"
             />
             {errors.name && <span className="text-red-600">{errors.name}</span>}
           </div>
@@ -70,7 +70,7 @@ function AddNewUser({ viewModal }) {
               name="email"
               id="email"
               onChange={handleInput}
-              className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
+              className="p-2 border-2 border-[#334155] bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded"
             />
             {errors.email && (
               <span className="text-red-600">{errors.email}</span>
@@ -86,7 +86,7 @@ function AddNewUser({ viewModal }) {
               name="password"
               id="password"
               onChange={handleInput}
-              className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
+              className="p-2 border-2 border-[#334155] bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded"
             />
             <PasswordSegurity password={values.password}/>
             {errors.password && (
@@ -105,7 +105,7 @@ function AddNewUser({ viewModal }) {
               onChange={handleInput}
               min={900000000}
               max={999999999}
-              className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
+              className="p-2 border-2 border-[#334155] bg-[#0c161e] focus:border-[#2ec7bc] focus:outline-none rounded"
             />
             
           </div>
@@ -136,13 +136,17 @@ function AddNewUser({ viewModal }) {
             <button
             type="button"
             onClick={viewModal}
-             className="px-4 py-2 border-2 border-white/40 bg-red-900 hover:bg-white hover:text-red-900 text-white rounded "
+             className="relative bg-[#f52926] text-[#e2e5e5] px-3 py-2 w-fit rounded mr-2 flex items-center gap-2 hover:scale-105 transition-transform
+                after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#e2e5e5] after:origin-center after:transition-all after:duration-300
+                hover:after:left-0 hover:after:w-full"
             >
             <strong>Cancelar</strong>
             </button>
             <button
             type="submit"
-             className="px-4 py-2 border-2 border-red-900 hover:bg-white hover:text-red-900 text-white rounded"
+             className="relative bg-[#176b81] text-[#e2e5e5] px-3 py-2 w-fit rounded mr-2 flex items-center gap-2 hover:scale-105 transition-transform
+                after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#e2e5e5] after:origin-center after:transition-all after:duration-300
+                hover:after:left-0 hover:after:w-full"
             >
             <strong>Crear Cuenta</strong>
             </button>     
