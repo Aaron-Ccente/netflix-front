@@ -19,3 +19,12 @@
   border-radius: 8px;
   border: 2px solid #ffe5e5; 
 }
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #0c161e inset !important;
+  -webkit-text-fill-color: #e2e5e5 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
