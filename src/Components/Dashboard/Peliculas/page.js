@@ -11,6 +11,7 @@ function Page() {
                       hover:after:left-0 hover:after:w-full`;
   const [modalAddNewMovie, setModalNewMovie] = useState({open: false, update: false});
   const [modalEditMovie, setModalEditMovie] = useState({open: false, update: false});
+  const [deleteMovie, setDeleteMovie] = useState(false);
   const [dataMovies, setDataMovie] = useState([])
 
   useEffect(()=>{
@@ -19,7 +20,7 @@ function Page() {
       setDataMovie(res.data)
     })
     .catch((err)=>console.log(err))
-  },[modalAddNewMovie.update, modalEditMovie.update])
+  },[modalAddNewMovie.update, modalEditMovie.update, deleteMovie])
 
   const handleNewMovie = (view, update) =>{
     if(view === true && update === false){
@@ -43,7 +44,14 @@ function Page() {
       setModalEditMovie({open:false, update: false})
     }
   }
-
+  const handleDeleteMovie = (id) =>{
+    axios.delete(`http://localhost:8081/delete-movie/${id}`)
+    .then((res)=>{
+      console.log(res.data.message)
+      setDeleteMovie(true)
+    }).catch((err)=>console.log(err))
+    setDeleteMovie(false)
+  }
   return (
     <div className="p-8">
       <div className='flex justify-between items-center'>
@@ -79,7 +87,9 @@ function Page() {
                     <EditIcon />
                     Editar
                   </button>
-                  <button className={`${inputStyle} text-[#f52926] after:bg-[#f52926]`}>
+                  <button 
+                  onClick={()=>handleDeleteMovie(movie.id)}
+                  className={`${inputStyle} text-[#f52926] after:bg-[#f52926]`}>
                     <DeleteIcon />
                     Eliminar
                   </button>
