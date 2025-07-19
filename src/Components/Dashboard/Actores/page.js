@@ -4,10 +4,13 @@ import DeleteIcon from 'Icons/DeleteIcon';
 import AddNewActor from './AddNewActor';
 import ActorsIcon from 'Icons/ActorsIcon';
 import axios from 'axios';
+import FormEditActor from './FormEditActor';
 function Page() {
   const [addActor, setAddActor] = useState({view: false, update: false});
   const [actors, setActors] = useState([]);
-
+  const [editActor, setEditActor] = useState({});
+  const [updateActor, setUpdateAddActor] = useState({view: false, update: false});
+  const [deleteActor, serDeleteActor] = useState(false);
   useEffect(() => {
     axios.get("http://localhost:8081/get-all-actors")
     .then((res)=>{
@@ -17,7 +20,7 @@ function Page() {
     ).catch((err)=>{
       console.error("Error fetching actors:", err);
     });
-  }, [addActor.update]);
+  }, [addActor.update, updateActor.update, deleteActor]);
 
   const handleAddActor = (view, update) =>{
     if(view===false && update === true){
@@ -28,10 +31,35 @@ function Page() {
     else{
       setAddActor({view: false, update: false});}
     }
-  const formateDate = (dateString) => {
+
+    const formateDate = (dateString) => {
     const [y, m, d] = dateString.split("-");
     return `${y}-${m}-${d.slice(0,2)}`;
   }
+
+   const handleEditActor = (view, update) =>{
+    if(view===false && update === true){
+    setUpdateAddActor({view: false, update: true});}
+    else if(view === true && update === false){
+    setUpdateAddActor({view: true, update: false})
+    }
+    else{
+    setUpdateAddActor({view: false, update: false});}
+    }
+
+  const handleViewEditActor = (id, name, image_actor, biography, date_of_birth) =>{
+    setEditActor({id,name,image_actor,biography,date_of_birth})
+  }
+  const handleDelteActor = (id) =>{
+    axios.delete(`http://localhost:8081/delete-actor/${id}`)
+    .then((res)=>{
+      console.log(res.data.message);
+      serDeleteActor(true)
+    })
+    .catch((err)=>console.log(err.message))
+    serDeleteActor(false)
+  }
+
   return (
     <div className="p-8">
       <div className='flex justify-between items-center'>
@@ -60,15 +88,21 @@ function Page() {
                 className="relative bg-[#1b3341] text-[#e2e5e5] px-3 py-2 w-fit rounded mr-2 flex items-center gap-2 hover:scale-105 transition-transform
                 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#2ec7bc] after:origin-center after:transition-all after:duration-300
                 hover:after:left-0 hover:after:w-full"
+                onClick={()=>{
+                  handleViewEditActor(element.id, element.name, element.image_actor, element.biography, formateDate(element.date_of_birth))
+                  handleEditActor(true, false)
+                }}
                 ><EditIcon/>Editar</button>
                 <button className="relative bg-[#1b3341] text-[#f52926] px-3 py-2 rounded flex items-center gap-2 hover:scale-105 transition-transform
                 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#f52926] after:origin-center after:transition-all after:duration-300
                 hover:after:left-0 hover:after:w-full"
+                onClick={()=>handleDelteActor(element.id)}
                 ><DeleteIcon/>Eliminar</button>
               </td>
             </tr>)}     
           </tbody>
         </table>
+        {updateActor.view && <FormEditActor data={editActor} viewModal={handleEditActor}/> }
       </div>
     </div>
   )
