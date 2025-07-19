@@ -4,31 +4,18 @@
 
 
 /* Scrollbar personalizada */
-<<<<<<< HEAD
 .scroll-sky::-webkit-scrollbar {
-=======
-.scroll-red::-webkit-scrollbar {
->>>>>>> 5f6a745489a2a3da932b3ebdf1f2c90c6efc4916
   height: 8px;
   width: 8px;
 }
 
-<<<<<<< HEAD
 .scroll-sky::-webkit-scrollbar-track {
-=======
-.scroll-red::-webkit-scrollbar-track {
->>>>>>> 5f6a745489a2a3da932b3ebdf1f2c90c6efc4916
   background: #ffe5e5; 
   border-radius: 8px;
 }
 
-<<<<<<< HEAD
 .scroll-sky::-webkit-scrollbar-thumb {
   background-color: #2ec7bc; 
-=======
-.scroll-red::-webkit-scrollbar-thumb {
-  background-color: #e11d48; 
->>>>>>> 5f6a745489a2a3da932b3ebdf1f2c90c6efc4916
   border-radius: 8px;
   border: 2px solid #ffe5e5; 
 }
