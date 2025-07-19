@@ -4,18 +4,18 @@
 
 
 /* Scrollbar personalizada */
-.scroll-red::-webkit-scrollbar {
+.scroll-sky::-webkit-scrollbar {
   height: 8px;
   width: 8px;
 }
 
-.scroll-red::-webkit-scrollbar-track {
+.scroll-sky::-webkit-scrollbar-track {
   background: #ffe5e5; 
   border-radius: 8px;
 }
 
-.scroll-red::-webkit-scrollbar-thumb {
-  background-color: #e11d48; 
+.scroll-sky::-webkit-scrollbar-thumb {
+  background-color: #2ec7bc; 
   border-radius: 8px;
   border: 2px solid #ffe5e5; 
 }
