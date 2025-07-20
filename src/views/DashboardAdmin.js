@@ -38,7 +38,7 @@ function DashboardAdmin() {
                 </div>
             </div>
             <div className='max-h-screen w-full overflow-auto text-white'>
-                <header className='w-full text-white text-lg flex justify-end gap-6 pt-10 px-10'>
+                <header className='w-full text-white text-lg flex h-[80px] justify-end gap-6 pt-10 px-10'>
                     <div className=''>Bienvenido, {user.name} </div>
                     <button onClick={logout} className='bg-red-600 px-10 py-1 rounded-lg'>Salir</button>
                 </header>

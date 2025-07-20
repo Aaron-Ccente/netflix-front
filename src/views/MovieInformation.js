@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Nav from "../Components/NavComponent/Nav.js";
+import { searchActorImageRoute } from "utils/searchRoutesActor.js";
 
 function Movie() {
   const location = useLocation();
@@ -64,7 +65,7 @@ function Movie() {
   const openModalActor = (id) => {
     const actor = actors.find((actor) => actor.id === id);
     if (actor) {
-      setIdActorSelected(actor); // Esto está bien: guardas el objeto del actor completo
+      setIdActorSelected(actor);
       setViewModal(true);
     }
   };
@@ -73,6 +74,9 @@ function Movie() {
     setIdActorSelected(null);
     setViewModal(false);
   };
+  const isBase64Background = typeof infoMovie[0]?.background_url === "string" && infoMovie[0]?.background_url.startsWith("data:image");
+  const isBase64Poster = typeof infoMovie[0]?.photo_url === "string" && infoMovie[0]?.photo_url.startsWith("data:image");
+  console.log(actors)
 
   return (
     <div className="relative min-h-screen  text-white bg-black dark:bg-white">
@@ -83,19 +87,27 @@ function Movie() {
         <div className="flex items-center justify-center">
           <div
             style={{
-              backgroundImage: `url(/imagenesMovie/background/${infoMovie[0]?.background_url}.webp)`,
+              backgroundImage: isBase64Background? `url(${infoMovie[0]?.background_url})` :`url(/imagenesMovie/background/${infoMovie[0]?.background_url}.webp)`,
             }}
             className="relative  w-[1300px] h-[540px] flex items-center bg-cover bg-center bg-no-repeat z-20"
           >
             <div className="absolute w-[1300px] h-[540px] bg-black/60 z-10"></div>
             <div className="px-10 py-20 flex gap-20  w-full z-30">
-              <img
+              {isBase64Poster? 
+              (<img
+                src={infoMovie[0]?.photo_url}
+                width={350}
+                height={450}
+                alt=""
+                className="min-h-[450px] min-w-[350px] max-h-[450px] max-w-[350px]"
+              />):(<img
                 src={`/imagenesMovie/background/poster/${infoMovie[0]?.photo_url}.webp`}
                 width={350}
                 height={450}
                 alt=""
                 className="min-h-[450px] min-w-[350px] max-h-[450px] max-w-[350px]"
-              />
+              />)}
+              
               <div className="flex flex-col gap-2 w-full">
                 <h2 className="text-4xl font-bold">{infoMovie[0]?.title}</h2>
                 <p className="text-xs">
@@ -164,36 +176,59 @@ function Movie() {
       <div className="pt-20 w-full" id="reparto">
         <p className=" text-center font-bold text-3xl bg-gradient-to-r from-black py-2 via-[#004B49] to-black">REPARTO</p>
         <div className="px-28 py-8 grid grid-cols-3 justify-items-center gap-10">
-          {actors?.map((element) => (
-            <span
-              key={element.id}
-              className="text-center bg-[#004B49] px-2 py-2 rounded-lg hover:opacity-70 hover:cursor-pointer"
-              onClick={() => openModalActor(element.id)}
-            >
-              <img
-                src={`/imagenesMovie/background/actors/${infoMovie[0]?.photo_url}/${element.image_actor}.webp`}
-                alt=""
-                width={300}
-                height={350}
-              />
-              <p>{element.name}</p>
-              <p className="text-xl text-lime-300 font-extrabold">
-                {element.character_name}
-              </p>
-            </span>
-          ))}
+          {actors?.map((element) => {
+            const isBase64Actor = typeof element.image_actor === "string" && element.image_actor.startsWith("data:image");
+            const urlActor = searchActorImageRoute(element.image_actor)
+            return (
+              <span
+                key={element.id}
+                className="text-center bg-[#004B49] px-2 py-2 rounded-lg hover:opacity-70 hover:cursor-pointer"
+                onClick={() => openModalActor(element.id)}
+              >
+                {isBase64Actor ? (
+                  <img
+                    src={element.image_actor}
+                    alt=""
+                    width={300}
+                    height={350}
+                  />
+                ) : (
+                  <img
+                    src={urlActor}
+                    alt=""
+                    width={300}
+                    height={350}
+                  />
+                )}
+                <p>{element.name}</p>
+                <p className="text-xl text-lime-300 font-extrabold">
+                  {element.character_name}
+                </p>
+              </span>
+            );
+          })}
         </div>
       </div>
       {viewModal && idActorSelected && (
         <div className="fixed top-0 left-0 flex items-center justify-center w-full min-h-screen bg-black/80 z-50">
           <div className="flex gap-4 bg-white text-black p-6 rounded-lg w-[800px] transform -translate-y-1/2 -translate-x-1/2 top-1/2 left-1/2 fixed">
-            <img
-              src={`/imagenesMovie/background/actors/${infoMovie[0]?.photo_url}/${idActorSelected.image_actor}.webp`}
-              width={300}
-              height={350}
-              alt={idActorSelected.name}
-              className="min-w-[300px]  min-h-[350px]"
-            />
+            {typeof idActorSelected.image_actor === "string" && idActorSelected.image_actor.startsWith("data:image") ? (
+              <img
+                src={idActorSelected.image_actor}
+                width={300}
+                height={350}
+                alt={idActorSelected.name}
+                className="min-w-[300px]  min-h-[350px]"
+              />
+            ) : (
+              <img
+                src={searchActorImageRoute(idActorSelected.image_actor)}
+                width={300}
+                height={350}
+                alt={idActorSelected.name}
+                className="min-w-[300px]  min-h-[350px]"
+              />
+            )}
             <div className="flex flex-col gap-2 max-h-[80vh] overflow-auto">
               <p className="font-bold text-xl">{idActorSelected.name}</p>
               <p className="text-sm text-gray-600">

@@ -50,13 +50,23 @@ function Favoritos() {
               <div
                 className={`flex gap-2 px-4 py-4 justify-center border-2 border-white dark:border-black`}
               >
-                <img
+                {typeof element.photo_url === "string" && element.photo_url.startsWith("data:image") ? 
+                (<img
+                  src={element.photo_url}
+                  width={200}
+                  height={300}
+                  className="max-h-[300px] max-w-[200px]"
+                  alt=""
+                />):
+                (<img
                   src={`/imagenesMovie/background/poster/${element.photo_url}.webp`}
                   width={200}
                   height={300}
                   className="max-h-[300px] max-w-[200px]"
                   alt=""
-                />
+                />)
+                }
+                
                 <div className="w-1/2 grid gap-3">
                   <p className="font-bold">{element.title}</p>
                   <p className="text-start">
