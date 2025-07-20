@@ -11,6 +11,8 @@ function Home() {
   const [movie_genre, setMovieGenres] = useState([]);
   const [idUser, setIdUser ] = useState([]);
   const { user } = useAuth();
+  const [update, setUpdate] = useState(false);
+
   useEffect(() => {
     
     axios.get("http://localhost:8081/movies").then((res) => {
@@ -25,7 +27,12 @@ function Home() {
     axios.get(`http://localhost:8081/userId-of-person?id_persona=${user?.id}`)
     .then((res)=>setIdUser(res.data))
     .catch((err)=>console.error(err))
-  }, [user?.id]);
+  }, [user?.id, update]);
+
+  const handleUpdateMovies = (update) =>{
+    setUpdate(update)
+  }
+
   const randomIndex = Math.floor(Math.random() * movies?.length);
 
   return (
@@ -73,6 +80,7 @@ function Home() {
                           .slice(0, 10)}
                         image={movie.photo_url}
                         id_user={idUser[0]?.id_user}
+                        update={handleUpdateMovies}
                       />
                     </div>
                   ))}
