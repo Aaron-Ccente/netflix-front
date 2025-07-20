@@ -1,9 +1,12 @@
 import React from 'react'
+import RadarChart from './RadarChart'
 
-function page() {
+function Page() {
   return (
-    <div>page para estadisticas</div>
+    <div><p>page para estadisticas</p>
+    <RadarChart/>
+    </div>
   )
 }
 
-export default page
+export default Page
