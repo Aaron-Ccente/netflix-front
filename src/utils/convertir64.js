@@ -30,7 +30,7 @@ export const convertImageToWebP = (file) => {
             }
           },
           "image/webp",
-          0.8 // Reduce la calidad al 80%
+          0.8
         );
       };
 
