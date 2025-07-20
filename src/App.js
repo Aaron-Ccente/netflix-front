@@ -15,7 +15,7 @@ import CategoriasPage from './Components/Dashboard/Categorias/page';
 import EstadisticasPage from './Components/Dashboard/Estadisticas/page';
 import PeliculasPage from './Components/Dashboard/Peliculas/page';
 import ProductoresPage from './Components/Dashboard/Productores/page';
-import DashbordPage from './Components/Dashboard/page';
+import DashbordPage from './Components/Dashboard/HomePage/page';
 
 function App() {
   return (
