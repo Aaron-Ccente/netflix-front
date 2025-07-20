@@ -9,7 +9,7 @@ function AddNewMovie({ open }) {
   const styleForInput = `p-2 border-2 bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded`;
   const [genres, setGenres] = useState([]);
   const [companies, setCompanies] = useState([]);
-  const [actors, setActors] = useState([]); // [{id, name, character_name}]
+  const [actors, setActors] = useState([]);
 
   const [genresSelect, setGenresSelect] = useState([]);
   const [companiesSelect, setCompaniesSelect] = useState([]);
@@ -150,6 +150,10 @@ function AddNewMovie({ open }) {
       .post("http://localhost:8081/create-movie", movieData)
       .then((response) => {
         console.log("success", response.data.message);
+        if(response.status === 200){
+          open(false, true)
+
+        }
       })
       .catch((error) => {
         console.error("Error al crear pelicula:", error);
@@ -192,6 +196,7 @@ function AddNewMovie({ open }) {
               type="date"
               id="release_year"
               name="release_year"
+              required
               onChange={handleInputChange}
               className={`${styleForInput} border-[#334155] ml-2 font-light px-2 rounded-lg`}
             />
@@ -267,7 +272,7 @@ function AddNewMovie({ open }) {
             <textarea
               id="description"
               name="description"
-              maxLength={700}
+              maxLength={500}
               minLength={200}
               onChange={handleInputChange}
               required
