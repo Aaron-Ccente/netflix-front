@@ -301,7 +301,7 @@ function FormEditMovie({ open, data }) {
             <textarea
               id="description"
               name="description"
-              maxLength={700}
+              maxLength={500}
               minLength={200}
               required
               value={values.description}
