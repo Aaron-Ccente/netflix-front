@@ -2,13 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function Categoria({ name, release_year, image, id_movie, id_user }) {
+function Categoria({ name, release_year, image, id_movie, id_user, update }) {
   const navigate = useNavigate();
 
   const [savedModal, setSavedModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [savedSavedModal, setSavedSavedModal] = useState(false);
   const [savedDeleteModal, setSavedDeleteModal] = useState(false);
+  const isBase64Poster = typeof image === "string" && image.startsWith("data:image");
+
 
   const viewMovieInformation = (id_movie) => {
     navigate(`/movie/${id_movie}`, { state: { id_movie } });
@@ -28,7 +30,7 @@ function Categoria({ name, release_year, image, id_movie, id_user }) {
     .catch((err) => {
       console.error("Error verificando si la película está guardada", err);
     });
-}, [id_movie, id_user]);
+}, [id_movie, id_user, savedModal, deleteModal]);
 
 
 
@@ -41,15 +43,17 @@ function Categoria({ name, release_year, image, id_movie, id_user }) {
           setSavedModal(false);
           setDeleteModal(true);
           setSavedSavedModal(true);
+          update(true)
           setTimeout(() => {
             setSavedSavedModal(false);
+          update(false)
           }, 1000);
         } else {
           alert("Error al guardar película");
         }
       })
       .catch((err) => {
-        
+        console.log(err)
         alert("Error al guardar película");
       });
   };
@@ -63,8 +67,10 @@ function Categoria({ name, release_year, image, id_movie, id_user }) {
           setDeleteModal(false)
           setSavedModal(true);
           setSavedDeleteModal(true);
+          update(true)
           setTimeout(() => {
             setSavedDeleteModal(false);
+            update(false)
           }, 1000);
         } else {
           alert("Error inesperado al eliminar película");
@@ -77,14 +83,24 @@ function Categoria({ name, release_year, image, id_movie, id_user }) {
 
   return (
     <div className="relative text-xl text-white w-[300px] ">
+      {isBase64Poster? 
       <img
-        src={`/imagenesMovie/background/poster/${image}.webp`}
+        src={image}
         className="hover:opacity-60 hover:cursor-pointer"
         width={300}
         height={400}
         onClick={() => viewMovieInformation(id_movie)}
         alt=""
       />
+      : (<img
+        src={`/imagenesMovie/background/poster/${image}.webp`}
+        className="hover:opacity-60 hover:cursor-pointer"
+        width={300}
+        height={400}
+        onClick={() => viewMovieInformation(id_movie)}
+        alt=""
+      />)}
+      
       <div>
         <p>{name}</p>
         <p className="text-end">{release_year}</p>

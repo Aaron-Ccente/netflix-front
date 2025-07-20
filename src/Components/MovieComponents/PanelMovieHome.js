@@ -3,10 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function PanelMovie({ id, backgroundImage, posterImage }) {
+
   const infoID = id;
   const [infoMovie, setInfoMovie] = useState([]);
   const [category, setCategories] = useState([]);
   const [company, setCompanies] =useState([]);
+
+  const isBase64Poster = typeof posterImage === "string" && posterImage.startsWith("data:image");
+  const isBase64Background = typeof backgroundImage === "string" && backgroundImage.startsWith("data:image");
+
+
   useEffect(() => {
     axios
       .get(`http://localhost:8081/movie-id?id=${infoID}`)
@@ -55,21 +61,33 @@ function PanelMovie({ id, backgroundImage, posterImage }) {
   };
   return (
     <>
+
       <div
         style={{
-          backgroundImage: `url(/imagenesMovie/background/${backgroundImage}.webp)`,
+          backgroundImage: isBase64Background? `url(${backgroundImage})`:`url(/imagenesMovie/background/${backgroundImage}.webp)`,
         }}
         className="relative w-[1300px] h-[540px] flex items-center bg-cover bg-center bg-no-repeat z-20"
       >
         <div className="absolute w-[1300px] h-[540px] bg-black/60 z-10"></div>
         <div className="px-10 py-20 flex gap-20  w-full z-30">
-          <img
-            src={`/imagenesMovie/background/poster/${posterImage}.webp`}
-            width={350}
-            height={450}
-            alt=""
-            className="min-h-[450px] min-w-[350px] max-h-[450px] max-w-[350px]"
-          />
+          {isBase64Poster ? (
+            <img
+              src={posterImage}
+              width={350}
+              height={450}
+              alt="Poster"
+              className="min-h-[450px] min-w-[350px] max-h-[450px] max-w-[350px]"
+            />
+          ) : (
+            <img
+              src={`/imagenesMovie/background/poster/${posterImage}.webp`}
+              width={350}
+              height={450}
+              alt="Poster"
+              className="min-h-[450px] min-w-[350px] max-h-[450px] max-w-[350px]"
+            />
+          )}
+          
           <div className="flex flex-col gap-2 w-full">
             <h2 className="text-4xl font-bold">{infoMovie[0]?.title}</h2>
             <p className="text-xs">
