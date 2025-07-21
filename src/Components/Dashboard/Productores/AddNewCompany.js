@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showError, showSuccess } from "Components/ui/Toast";
 import React, { useState } from "react";
 
 function AddNewCompany({ viewModal }) {
@@ -21,14 +22,16 @@ function AddNewCompany({ viewModal }) {
       .post("http://localhost:8081/create-company", values)
       .then((res) => {
         if (res.status === 200) {
-          alert("Compañia creado correctamente ", res.data.message, res.status);
+          showSuccess(res.data.message)
           viewModal();
         }
         
       })
      .catch((err) => {
       if (err.response && err.response.data && err.response.data.error) {
-        setErrors(err.response.data.error)
+        const errorToast = err.response.data.error;
+        showError(errorToast)
+        setErrors(errorToast)
       } else {
         setErrors("Error inesperado: " + err.message);
       }

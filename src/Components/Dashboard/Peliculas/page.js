@@ -5,6 +5,7 @@ import MoviesIcon from 'Icons/MoviesIcon';
 import AddNewMovie from './AddNewMovie';
 import axios from 'axios';
 import FormEditMovie from './FormEditMovie';
+import { showSuccess } from 'Components/ui/Toast';
 function Page() {
   const inputStyle = `relative bg-[#1b3341] px-3 py-2 w-fit rounded mr-2 flex items-center gap-2 hover:scale-105 transition-transform
                       after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:origin-center after:transition-all after:duration-300
@@ -47,7 +48,7 @@ function Page() {
   const handleDeleteMovie = (id) =>{
     axios.delete(`http://localhost:8081/delete-movie/${id}`)
     .then((res)=>{
-      console.log(res.data.message)
+      showSuccess(res.data.message)
       setDeleteMovie(true)
     }).catch((err)=>console.log(err))
     setDeleteMovie(false)

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showError, showSuccess } from 'Components/ui/Toast';
 import React, { useState } from 'react'
 
 function AddNewCategory({ viewModal }) {
@@ -21,14 +22,16 @@ function AddNewCategory({ viewModal }) {
       .post("http://localhost:8081/create-genre", values)
       .then((res) => {
         if (res.status === 200) {
-          alert("Compañia creado correctamente ", res.data.message, res.status);
+          showSuccess(res.data.message)
           viewModal();
         }
         
       })
      .catch((err) => {
       if (err.response && err.response.data && err.response.data.error) {
-        setErrors(err.response.data.error)
+         const backendError = err.response.data.error;
+              showError(backendError);
+              setErrors(backendError);
       } else {
         setErrors("Error inesperado: " + err.message);
       }

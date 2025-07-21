@@ -16,11 +16,13 @@ import EstadisticasPage from './Components/Dashboard/Estadisticas/page';
 import PeliculasPage from './Components/Dashboard/Peliculas/page';
 import ProductoresPage from './Components/Dashboard/Productores/page';
 import DashbordPage from './Components/Dashboard/HomePage/page';
+import { Toaster } from 'sonner';
 
 function App() {
   return (
     <BrowserRouter >
     <ScrollToTop />
+    <Toaster richColors position="top-right" />
       <Routes>
         {/* Ruta por defecto, login del sitio */}
         <Route path='/' element={<Login/>}></Route>

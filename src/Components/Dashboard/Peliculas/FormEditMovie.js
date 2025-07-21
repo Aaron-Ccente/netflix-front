@@ -6,6 +6,7 @@ import { searchPosterRoute } from "utils/searchRoutesPoster";
 import { searchBackgroundRoute } from "utils/searchRoutesBackground";
 import CloseSmall from "Icons/CloseSmall";
 import axios from "axios";
+import { showError, showSuccess } from "Components/ui/Toast";
 
 function FormEditMovie({ open, data }) {
   const styleForInput = `p-2 border-2 bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded`;
@@ -171,17 +172,18 @@ function FormEditMovie({ open, data }) {
       movie_genre: genresSelect,
       movie_production_company: companiesSelect,
     };
-    console.log(movieData)
+
     axios
       .put(`http://localhost:8081/update-movie/${data.id}`, movieData)
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data.message);
-        open(false, true);
+          showSuccess(res.data.message);
+          open(false, true);
         }
       })
       .catch((err) => {
-        console.error("Error al actualizar la película:", err);
+        console.log(err)
+        showError("Error al actualizar la película:");
       });
   };
 

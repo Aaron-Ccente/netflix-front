@@ -1,6 +1,7 @@
 import axios from "axios";
 import PasswordSegurity from "Components/SignUpComponents/PasswordSegurity";
 import { validation } from "Components/SignUpComponents/SignupValidation";
+import { showError, showSuccess } from "Components/ui/Toast";
 import React, { useEffect, useState } from "react";
 
 function FormEditUser({ data, viewModal, onClose }) {
@@ -44,10 +45,15 @@ function FormEditUser({ data, viewModal, onClose }) {
     ) {
       axios.put(`http://localhost:8081/update-user/${data.id}`,values)
       .then((res)=>{
-        if(res.status === 200) alert('Usuario actualizado correctamente');
+        if(res.status === 200) showSuccess('Usuario actualizado correctamente');
         onClose()
       })
-      .catch(err=>console.log(err))
+      .catch(err=>
+      {
+        const errorToast = err.response.data.err.sqlMessage;
+        showError(errorToast)
+      }
+      )
       if (onClose) onClose();
     }
   };

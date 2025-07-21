@@ -1,6 +1,7 @@
 import axios from 'axios';
 import PasswordSegurity from 'Components/SignUpComponents/PasswordSegurity';
 import { validation } from 'Components/SignUpComponents/SignupValidation';
+import { showError, showSuccess } from 'Components/ui/Toast';
 import React, { useState } from 'react'
 
 function AddNewUser({ viewModal }) {
@@ -25,7 +26,6 @@ function AddNewUser({ viewModal }) {
     event.preventDefault();
     const validationErrors = validation(values);
         setErrors(validationErrors);
-    
         if (
           !validationErrors.name &&
           !validationErrors.email &&
@@ -34,11 +34,14 @@ function AddNewUser({ viewModal }) {
             axios.post("http://localhost:8081/signup",values)
             .then((res)=>{
                 if(res.status === 200){
-                    alert('Usuario creado correctamente')
+                    showSuccess('Usuario creado correctamente')
                     viewModal()
                 }
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+              const errorToast = err.response.data.err.sqlMessage;
+              showError(errorToast)
+              console.log(err)})
         }
   }
   return (
@@ -54,6 +57,7 @@ function AddNewUser({ viewModal }) {
               type="text"
               placeholder="Ingrese su nombre"
               onChange={handleInput}
+              required
               name="name"
               id="name"
               className="p-2 border-2 border-[#334155] bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded"
@@ -68,6 +72,7 @@ function AddNewUser({ viewModal }) {
               type="email"
               placeholder="Ejemplo: aronccente@gmail.com"
               name="email"
+              required
               id="email"
               onChange={handleInput}
               className="p-2 border-2 border-[#334155] bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded"
@@ -84,6 +89,7 @@ function AddNewUser({ viewModal }) {
               type="password"
               placeholder="Contraseña"
               name="password"
+              required
               id="password"
               onChange={handleInput}
               className="p-2 border-2 border-[#334155] bg-[#0c161e]  focus:border-[#2ec7bc] focus:outline-none rounded"
@@ -101,6 +107,7 @@ function AddNewUser({ viewModal }) {
               type="number"
               placeholder="900000000"
               name="phone"
+              required
               id="phone"
               onChange={handleInput}
               min={900000000}

@@ -5,6 +5,7 @@ import AddNewCompany from "./AddNewCompany";
 import axios from "axios";
 import FormEditCompany from "./FormEditCompany";
 import CompanyIcon from "Icons/CompanyIcon";
+import { showSuccess } from "Components/ui/Toast";
 function Page() {
   const [addNewCompany, setAddNewCompany] = useState(false);
   const [deleteCompany, setDeleteCompany] = useState(false);
@@ -33,7 +34,7 @@ function Page() {
     axios.delete(`http://localhost:8081/delete-company/${id}`)
     .then((res)=>{
       setDeleteCompany(true);
-      alert(res.data.message)
+      showSuccess(res.data.message)
     })
     .catch((err)=>console.log(err))
     setDeleteCompany(false);

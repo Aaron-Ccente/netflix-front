@@ -5,6 +5,7 @@ import axios from 'axios';
 import FormEditUser from './FormEditUser';
 import AddNewUser from './AddNewUser';
 import AddIcon from 'Icons/AddIcon';
+import { showSuccess } from 'Components/ui/Toast';
 function Page() {
   const [users, setUsers] = useState([]);
   const [modalEdit, setModalEdit] = useState({
@@ -30,6 +31,7 @@ function Page() {
     try {
         const res = await axios.get('http://127.0.0.1:8081/all-users');
         setUsers(res.data)
+        showSuccess('Usuario eliminado correctamente')
       } catch (error) {
         console.error('Error al obtener usuarios:', error);
       }

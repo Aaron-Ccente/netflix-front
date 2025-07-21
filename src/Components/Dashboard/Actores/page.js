@@ -5,6 +5,7 @@ import AddNewActor from './AddNewActor';
 import ActorsIcon from 'Icons/ActorsIcon';
 import axios from 'axios';
 import FormEditActor from './FormEditActor';
+import { showSuccess } from 'Components/ui/Toast';
 function Page() {
   const [addActor, setAddActor] = useState({view: false, update: false});
   const [actors, setActors] = useState([]);
@@ -15,7 +16,6 @@ function Page() {
     axios.get("http://localhost:8081/get-all-actors")
     .then((res)=>{
       setActors(res.data.data);
-      console.log(res.data.message);
     }
     ).catch((err)=>{
       console.error("Error fetching actors:", err);
@@ -53,7 +53,7 @@ function Page() {
   const handleDelteActor = (id) =>{
     axios.delete(`http://localhost:8081/delete-actor/${id}`)
     .then((res)=>{
-      console.log(res.data.message);
+      showSuccess(res.data.message);
       serDeleteActor(true)
     })
     .catch((err)=>console.log(err.message))
