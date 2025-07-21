@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showError, showSuccess } from "Components/ui/Toast";
 import React, { useState } from "react";
 
 function FormEditCompany({ data, onClose }) {
@@ -22,13 +23,15 @@ function FormEditCompany({ data, onClose }) {
       .put("http://localhost:8081/update-company", values)
       .then((res) => {
         if (res.status === 200) {
-          alert(res.data.message);
+          showSuccess(res.data.message);
           onClose();
         }
       })
      .catch((err) => {
       if (err.response && err.response.data && err.response.data.error) {
-        setErrors(err.response.data.error)
+        const errorToast = err.response.data.error;
+        showError(errorToast)
+        setErrors(errorToast)
       } else {
         setErrors("Error inesperado: " + err.message);
       }

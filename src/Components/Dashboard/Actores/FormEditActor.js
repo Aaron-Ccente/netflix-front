@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showError, showSuccess } from 'Components/ui/Toast';
 import Close from 'Icons/Close';
 import Plus from 'Icons/Plus';
 import React, { useEffect, useState } from 'react'
@@ -65,7 +66,7 @@ function FormEditActor({ viewModal, data }) {
 
     axios.put(`http://localhost:8081/update-actor/${data.id}`, actorData)
       .then((res) => {
-        console.log(res.data.message);
+        showSuccess(res.data.message);
         setValues({
           name: "",
           image_actor: "",
@@ -75,6 +76,8 @@ function FormEditActor({ viewModal, data }) {
         viewModal(false, true);
       })
       .catch((err) => {
+        const errorToast = err.response.data.error;
+        showError(errorToast);
         console.error(err.response?.data?.error || "Error al crear actor");
       });
   };

@@ -82,6 +82,7 @@ function Signup() {
               type="text"
               placeholder="Ingrese su nombre"
               onChange={handleInput}
+              required
               name="name"
               id="name"
                className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
@@ -97,6 +98,7 @@ function Signup() {
               placeholder="Ejemplo: aronccente@gmail.com"
               name="email"
               id="email"
+              required
               onChange={handleInput}
               className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
             />
@@ -113,6 +115,7 @@ function Signup() {
               placeholder="Contraseña"
               name="password"
               id="password"
+              required
               onChange={handleInput}
               className="p-2 border-2 border-gray-200 text-black  focus:border-red-900 focus:outline-none rounded"
             />
@@ -130,6 +133,7 @@ function Signup() {
               placeholder="900000000"
               name="phone"
               id="phone"
+              required
               onChange={handleInput}
               min={900000000}
               max={999999999}
@@ -153,6 +157,7 @@ function Signup() {
               <input
                 type="radio"
                 name="role"
+                required
                 value="administrador"
                 checked={values.role === "administrador"}
                 onChange={handleInput}

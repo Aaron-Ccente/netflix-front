@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showError, showSuccess } from "Components/ui/Toast";
 import Close from "Icons/Close";
 import CloseSmall from "Icons/CloseSmall";
 import Plus from "Icons/Plus";
@@ -149,14 +150,14 @@ function AddNewMovie({ open }) {
     axios
       .post("http://localhost:8081/create-movie", movieData)
       .then((response) => {
-        console.log("success", response.data.message);
         if(response.status === 200){
           open(false, true)
-
+          showSuccess(response.data.message);
         }
       })
       .catch((error) => {
-        console.error("Error al crear pelicula:", error);
+        console.log(error)
+        showError("Error al crear pelicula");
       });
   };
   const handleInputChange = (event) => {

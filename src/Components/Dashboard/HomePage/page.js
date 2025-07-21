@@ -24,7 +24,7 @@ function Page() {
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 1 }}
-      className={`${bgStyle}`} onClick={()=>handleChangeView('usuarios')}>
+      className={`${bgStyle} hover:scale-110`} onClick={()=>handleChangeView('usuarios')}>
         <div className={`${bgStyleInto}`}>
           <p></p>
           <p>Usuarios</p>

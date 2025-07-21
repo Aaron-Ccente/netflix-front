@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showError, showSuccess } from 'Components/ui/Toast';
 import React, { useState } from 'react'
 
 function FormEditCategory({ data, onClose }) {
@@ -22,13 +23,15 @@ function FormEditCategory({ data, onClose }) {
       .put(`http://localhost:8081/update-genre/${values.id}`, values)
       .then((res) => {
         if (res.status === 200) {
-          alert(res.data.message);
+          showSuccess(res.data.message)
           onClose();
         }
       })
      .catch((err) => {
       if (err.response && err.response.data && err.response.data.error) {
-        setErrors(err.response.data.error)
+        const errosToast = err.response.data.error;
+        showError(errosToast)
+        setErrors(errosToast)
       } else {
         setErrors("Error inesperado: " + err.message);
       }

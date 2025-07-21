@@ -5,6 +5,7 @@ import axios from 'axios';
 import AddNewCategory from './AddNewCategory';
 import FormEditCategory from './FormEditCategory';
 import CategoryIcon from 'Icons/CategoryIcon';
+import { showSuccess } from 'Components/ui/Toast';
 function Page() {
   const [genre, setGenres] = useState([]);
   const [addGenre, SetAddGenre] = useState(false);
@@ -31,7 +32,8 @@ function Page() {
   const handleDeleteGenre = (id) =>{
     setDeleteGenre(true)
     axios.delete(`http://localhost:8081/delete-genre/${id}`)
-    .then((res)=>{console.log(res.data.message)
+    .then((res)=>{
+        showSuccess(res.data.message)
       })
     .catch((err)=>console.log(err))
   }
