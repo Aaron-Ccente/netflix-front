@@ -13,7 +13,9 @@ function Page() {
   const [updateActor, setUpdateAddActor] = useState({view: false, update: false});
   const [deleteActor, serDeleteActor] = useState(false);
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-actors`)
+        const url = process.env.REACT_APP_API_URL;
+
+    axios.get(`${url}/get-all-actors`)
     .then((res)=>{
       setActors(res.data.data);
     }
@@ -51,7 +53,9 @@ function Page() {
     setEditActor({id,name,image_actor,biography,date_of_birth})
   }
   const handleDelteActor = (id) =>{
-    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-actor/${id}`)
+        const url = process.env.REACT_APP_API_URL;
+
+    axios.delete(`${url}/delete-actor/${id}`)
     .then((res)=>{
       showSuccess(res.data.message);
       serDeleteActor(true)

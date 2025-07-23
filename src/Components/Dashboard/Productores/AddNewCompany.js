@@ -17,9 +17,11 @@ function AddNewCompany({ viewModal }) {
   };
 
   const handleSubmit = (event) => {
+        const url = process.env.REACT_APP_API_URL;
+
     event.preventDefault();
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/create-company`, values)
+      .post(`${url}/create-company`, values)
       .then((res) => {
         if (res.status === 200) {
           showSuccess(res.data.message)

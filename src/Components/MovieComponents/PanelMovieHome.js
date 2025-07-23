@@ -14,20 +14,22 @@ function PanelMovie({ id, backgroundImage, posterImage }) {
 
 
   useEffect(() => {
+    const url = process.env.REACT_APP_API_URL;
+
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-id?id=${infoID}`)
+      .get(`${url}/movie-id?id=${infoID}`)
       .then((res) => {
         setInfoMovie(res.data);
       })
       .catch((err) => console.error(err));
     axios
-    .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-by-genres?id=${infoID}`)
+    .get(`${url}/movie-by-genres?id=${infoID}`)
       .then((res) => {
         setCategories(res.data);
       })
       .catch((err) => console.error(err));
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-by-companies?id=${infoID}`)
+      .get(`${url}/movie-by-companies?id=${infoID}`)
       .then((res)=>{
         setCompanies(res.data);
       })

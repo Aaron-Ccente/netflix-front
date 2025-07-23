@@ -15,8 +15,10 @@ function Page() {
     setAddNewCompany(!addNewCompany);
   };
   useEffect(() => {
+        const url = process.env.REACT_APP_API_URL;
+
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-companies`)
+      .get(`${url}/get-all-companies`)
       .then((res) => {
         if (res.status === 200) {
           setAllCompanies(res.data.message);
@@ -31,7 +33,9 @@ function Page() {
     setEditCompany({open: false, data: {}})
   }
   const handleDeleteCompany = (id) =>{
-    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-company/${id}`)
+        const url = process.env.REACT_APP_API_URL;
+
+    axios.delete(`${url}/delete-company/${id}`)
     .then((res)=>{
       setDeleteCompany(true);
       showSuccess(res.data.message)

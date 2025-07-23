@@ -26,6 +26,7 @@ function Signup() {
   };
 
   const handleSubmit = (event) => {
+    const url = process.env.REACT_APP_API_URL;
     console.log(values)
     event.preventDefault();
     const validationErrors = validation(values);
@@ -37,12 +38,12 @@ function Signup() {
       !validationErrors.password
     ) {
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/signup`, values)
+        .post(`${url}/signup`, values)
         .then((res) => {
           if(res.statusText === "OK")
           {
             axios
-            .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {email: values.email, password: values.password})
+            .post(`${url}/login`, {email: values.email, password: values.password})
             .then((res) => {
               if (res.data.message === "Success") {
                 login(res.data.user);

@@ -37,10 +37,12 @@ function FormEditMovie({ open, data }) {
   const urlPosterNoBase64 = searchPosterRoute(data.photo_url);
   const urlBackgroundNoBase64 = searchBackgroundRoute(data.background_url);
   useEffect(() => {
+        const url = process.env.REACT_APP_API_URL;
+
     if (!isBase64Poster) setNobase64Image(urlPosterNoBase64);
     if (!isBase64Background) setNobase64ImageBackground(urlBackgroundNoBase64);
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/getGenreCompanyAndActors`)
+      .get(`${url}/getGenreCompanyAndActors`)
       .then((res) => {
         setGenresSelectInfo(res.data.genres);
         setCompaniesSelectInfo(res.data.companies);
@@ -155,6 +157,7 @@ function FormEditMovie({ open, data }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const url = process.env.REACT_APP_API_URL;
 
     const movieData = {
       title: values.title,
@@ -174,7 +177,7 @@ function FormEditMovie({ open, data }) {
     };
 
     axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/update-movie/${data.id}`, movieData)
+      .put(`${url}/update-movie/${data.id}`, movieData)
       .then((res) => {
         if (res.data.success) {
           showSuccess(res.data.message);

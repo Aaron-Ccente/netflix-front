@@ -7,7 +7,9 @@ function Page() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/stadistics-genres-count`)
+        const url = process.env.REACT_APP_API_URL;
+
+    axios.get(`${url}/stadistics-genres-count`)
       .then((res) => {
         if (res.data && Array.isArray(res.data.data)) {
           setDataInfo(res.data.data);

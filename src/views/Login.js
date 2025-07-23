@@ -6,6 +6,7 @@ import axios from "axios";
 import imageBackground from "../imagenes/backgroundGrande.webp";
 import NavInLoginAndRegister from "../Components/NavComponent/NavInLoginAndRegister.js";
 function Login() {
+  
   const { login } = useAuth();
   const [values, setValues] = useState({
     email: "",
@@ -24,10 +25,10 @@ function Login() {
     event.preventDefault();
     const validationErrors = validation(values);
     setErrors(validationErrors);
-
+    const url = process.env.REACT_APP_API_URL
     if (!validationErrors.email && !validationErrors.password) {
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, values)
+        .post(`${url}/login`, values)
         .then((res) => {
           if (res.data.message === "Success") {
             login(res.data.user);
@@ -43,7 +44,7 @@ function Login() {
         })
         .catch((err) => console.log(err));
     }
-    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+    console.log(url)
   };
 
   return (

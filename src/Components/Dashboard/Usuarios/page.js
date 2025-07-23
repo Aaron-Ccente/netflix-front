@@ -14,9 +14,11 @@ function Page() {
   });
   const [addUser,setAddUser] = useState(false);
   useEffect(() => {
+        const url = process.env.REACT_APP_API_URL;
+
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-users`);
+        const res = await axios.get(`${url}/all-users`);
         setUsers(res.data)
       } catch (error) {
         console.error('Error al obtener usuarios:', error);
@@ -27,9 +29,11 @@ function Page() {
   }, [addUser,modalEdit]);
 
   const handleDeleteUser = async (id) =>{
-    await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-user/${id}`)
+        const url = process.env.REACT_APP_API_URL;
+
+    await axios.delete(`${url}/delete-user/${id}`)
     try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-users`);
+        const res = await axios.get(`${url}/all-users`);
         setUsers(res.data)
         showSuccess('Usuario eliminado correctamente')
       } catch (error) {

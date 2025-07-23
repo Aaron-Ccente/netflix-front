@@ -12,19 +12,19 @@ function Home() {
   const [idUser, setIdUser ] = useState([]);
   const { user } = useAuth();
   const [update, setUpdate] = useState(false);
-
+  
   useEffect(() => {
-    
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movies`).then((res) => {
+    const url = process.env.REACT_APP_API_URL
+    axios.get(`${url}/movies`).then((res) => {
       setMovies(res.data);
     });
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/genre`).then((res) => {
+    axios.get(`${url}/genre`).then((res) => {
       setGenres(res.data);
     });
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movie_genrs`).then((res) => {
+    axios.get(`${url}/movie_genrs`).then((res) => {
       setMovieGenres(res.data);
     });
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/userId-of-person?id_persona=${user?.id}`)
+    axios.get(`${url}/userId-of-person?id_persona=${user?.id}`)
     .then((res)=>setIdUser(res.data))
     .catch((err)=>console.error(err))
   }, [user?.id, update]);

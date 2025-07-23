@@ -63,8 +63,9 @@ function FormEditActor({ viewModal, data }) {
       ...values,
       image_actor: imageToSend,
     };
+    const url = process.env.REACT_APP_API_URL;
 
-    axios.put(`${process.env.NEXT_PUBLIC_API_URL}/update-actor/${data.id}`, actorData)
+    axios.put(`${url}/update-actor/${data.id}`, actorData)
       .then((res) => {
         showSuccess(res.data.message);
         setValues({
