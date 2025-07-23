@@ -37,7 +37,7 @@ function Categoria({ name, release_year, image, id_movie, id_user, update }) {
   const saveMovie = (id_user, id_movie) => {
     const payload = { id_user, id_movie };
     axios
-      .post("http://localhost:8081/user-save-movie", payload)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/user-save-movie`, payload)
       .then((res) => {
         if (res.data.message === "Success") {
           setSavedModal(false);
@@ -61,7 +61,7 @@ function Categoria({ name, release_year, image, id_movie, id_user, update }) {
   const deleteMovie = (id_user, id_movie) => {
 
     axios
-      .delete(`http://localhost:8081/user-delete-movie/${id_user}/${id_movie}`)
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/user-delete-movie/${id_user}/${id_movie}`)
       .then((res) => {
         if (res.data.message === "Deleted") {
           setDeleteModal(false)

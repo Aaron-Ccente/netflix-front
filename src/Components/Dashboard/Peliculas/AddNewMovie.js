@@ -26,7 +26,7 @@ function AddNewMovie({ open }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/getGenreCompanyAndActors")
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/getGenreCompanyAndActors`)
       .then((res) => {
         setGenresSelect(res.data.genres);
         setCompaniesSelect(res.data.companies);
