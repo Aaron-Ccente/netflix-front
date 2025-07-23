@@ -18,9 +18,11 @@ function FormEditCompany({ data, onClose }) {
   };
 
   const handleSubmit = (event) => {
+        const url = process.env.REACT_APP_API_URL;
+
     event.preventDefault();
     axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/update-company`, values)
+      .put(`${url}/update-company`, values)
       .then((res) => {
         if (res.status === 200) {
           showSuccess(res.data.message);

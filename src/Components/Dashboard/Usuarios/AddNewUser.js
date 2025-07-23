@@ -31,7 +31,9 @@ function AddNewUser({ viewModal }) {
           !validationErrors.email &&
           !validationErrors.password
         ){
-            axios.post(`${process.env.NEXT_PUBLIC_API_URL}/signup`,values)
+             const url = process.env.REACT_APP_API_URL;
+
+            axios.post(`${url}/signup`,values)
             .then((res)=>{
                 if(res.status === 200){
                     showSuccess('Usuario creado correctamente')

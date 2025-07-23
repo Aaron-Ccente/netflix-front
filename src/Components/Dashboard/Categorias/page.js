@@ -12,7 +12,9 @@ function Page() {
   const [editGenre, setEditGenre] = useState({open: false, data: {}});
   const [deleteGenre,setDeleteGenre] = useState(false);
   useEffect(()=>{
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-genres`)
+    const url = process.env.REACT_APP_API_URL;
+
+    axios.get(`${url}/get-all-genres`)
     .then((res)=>{
       console.log(res.data.message)
       setGenres(res.data.data)
@@ -30,8 +32,10 @@ function Page() {
     setEditGenre({open: false, data: {}})
   }
   const handleDeleteGenre = (id) =>{
+        const url = process.env.REACT_APP_API_URL;
+
     setDeleteGenre(!deleteGenre)
-    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-genre/${id}`)
+    axios.delete(`${url}/delete-genre/${id}`)
     .then((res)=>{
         showSuccess(res.data.message)
       })

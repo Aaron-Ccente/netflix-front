@@ -25,8 +25,10 @@ function AddNewMovie({ open }) {
   const [pendingCharacterName, setPendingCharacterName] = useState("");
 
   useEffect(() => {
+        const url = process.env.REACT_APP_API_URL;
+
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/getGenreCompanyAndActors`)
+      .get(`${url}/getGenreCompanyAndActors`)
       .then((res) => {
         setGenresSelect(res.data.genres);
         setCompaniesSelect(res.data.companies);
@@ -147,8 +149,10 @@ function AddNewMovie({ open }) {
       movie_production_company,
       movie_actors,
     };
+      const url = process.env.REACT_APP_API_URL;
+
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/create-movie`, movieData)
+      .post(`${url}/create-movie`, movieData)
       .then((response) => {
         if(response.status === 200){
           open(false, true)

@@ -22,9 +22,11 @@ function Nav() {
     navigate("/");
   };
   useEffect(() => {
+    const url = process.env.REACT_APP_API_URL;
+
     if (!user?.id) return;
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/userId-of-person?id_persona=${user?.id}`)
+      .get(`${url}/userId-of-person?id_persona=${user?.id}`)
       .then((res) => {setIdUser(res.data[0].id_user);})
       .catch((err) => console.log(err));
   }, [user?.id]);

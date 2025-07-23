@@ -16,7 +16,9 @@ function Page() {
   const [dataMovies, setDataMovie] = useState([])
 
   useEffect(()=>{
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-movies`)
+        const url = process.env.REACT_APP_API_URL;
+
+    axios.get(`${url}/get-all-movies`)
     .then((res)=>{
       setDataMovie(res.data)
     })
@@ -46,7 +48,9 @@ function Page() {
     }
   }
   const handleDeleteMovie = (id) =>{
-    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-movie/${id}`)
+        const url = process.env.REACT_APP_API_URL;
+
+    axios.delete(`${url}/delete-movie/${id}`)
     .then((res)=>{
       showSuccess(res.data.message)
       setDeleteMovie(true)

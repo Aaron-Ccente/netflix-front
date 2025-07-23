@@ -26,7 +26,7 @@ function Page() {
       transition={{ duration: 1 }}
       className={`${bgStyle} hover:scale-110`} onClick={()=>handleChangeView('usuarios')}>
         <div className={`${bgStyleInto}`}>
-          <p></p>
+          <hr/>
           <p>Usuarios</p>
           <UserIconBig/>
         </div>
@@ -44,7 +44,7 @@ function Page() {
      transition={{ duration: 1, delay:0.2}}
      className={`${bgStyle}`} onClick={()=>handleChangeView('peliculas')}>
         <div className={`${bgStyleInto}`}>
-          <p></p>
+          <hr/>
           <p>Peliculas</p>
           <MoviesIconBid/>
         </div>
@@ -62,7 +62,7 @@ function Page() {
     transition={{duration: 1, delay: 0.4}}
     className={`${bgStyle}`} onClick={()=>handleChangeView('actores')}>
         <div className={`${bgStyleInto}`}>
-          <p></p>
+          <hr/>
           <p>Actores</p>
           <ActosIconBig/>
         </div>
@@ -80,7 +80,7 @@ function Page() {
    transition={{duration: 1, delay:0.6}}
    className={`${bgStyle}`} onClick={()=>handleChangeView('categorias')}>
         <div className={`${bgStyleInto}`}>
-          <p></p>
+          <hr/>
           <p>Categorias</p>
           <CategoryIconBig/>
         </div>
@@ -98,7 +98,7 @@ function Page() {
     transition={{duration:1, delay:0.8}}
     className={`${bgStyle}`} onClick={()=>handleChangeView('productores')}>
         <div className={`${bgStyleInto}`}>
-          <p></p>
+          <hr/>
           <p>Productores</p>
           <CompanyIconBig/>
         </div>
@@ -116,14 +116,14 @@ function Page() {
     transition={{duration:1, delay:1}}
     className={`${bgStyle}`} onClick={()=>handleChangeView('estadisticas')}>
         <div className={`${bgStyleInto}`}>
-          <p></p>
+          <hr/>
           <p>Estadistica</p>
           <StadisticIconBig/>
         </div>
          <div className='flex justify-between items-end px-4 py-2 text-lg gap-2'>
           <div>
             <p>Observa las estadisticas</p>
-            <p>con gráficos modernos<p className='text-[#0c161e]'>a</p></p>
+            <div>con gráficos modernos<p className='text-[#0c161e]'>a</p></div>
           </div>
           <button className='bg-[#2ec7bc] border-2 border-[#334155] px-2 h-fit py-1 rounded-lg text-lg flex items-center' onClick={()=>handleChangeView('estadisticas')}><p>Estadisticas</p><NextIcon/></button>
         </div>

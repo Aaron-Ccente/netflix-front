@@ -10,8 +10,9 @@ function Favoritos() {
   const isSave = movies?.length > 0 ? false : true;
   const navigate = useNavigate();
   useEffect(() => {
+    const url = process.env.REACT_APP_API_URL;
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/favorite-saved-user?id_user=${id_persona}`)
+      .get(`${url}/favorite-saved-user?id_user=${id_persona}`)
       .then((res) => {
         setMovies(res.data);
       })
@@ -19,8 +20,9 @@ function Favoritos() {
   }, [id_persona]);
 
   const deleteFavoriteMovie = (id_user, id_movie) => {
+    const url = process.env.REACT_APP_API_URL;
     axios
-      .delete(`${process.env.NEXT_PUBLIC_API_URL}/user-delete-movie/${id_user}/${id_movie}`)
+      .delete(`${url}/user-delete-movie/${id_user}/${id_movie}`)
       .then((res) => {
         if (res.data.message === "Deleted") {
           alert("Pelicula eliminada");

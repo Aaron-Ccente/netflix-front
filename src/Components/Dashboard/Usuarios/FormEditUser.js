@@ -43,7 +43,9 @@ function FormEditUser({ data, viewModal, onClose }) {
       !validationErrors.email &&
       !validationErrors.password
     ) {
-      axios.put(`${process.env.NEXT_PUBLIC_API_URL}/update-user/${data.id}`,values)
+          const url = process.env.REACT_APP_API_URL;
+
+      axios.put(`${url}/update-user/${data.id}`,values)
       .then((res)=>{
         if(res.status === 200) showSuccess('Usuario actualizado correctamente');
         onClose()

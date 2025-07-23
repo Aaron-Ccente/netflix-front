@@ -16,8 +16,10 @@ function Categoria({ name, release_year, image, id_movie, id_user, update }) {
     navigate(`/movie/${id_movie}`, { state: { id_movie } });
   };
  useEffect(() => {
+    const url = process.env.REACT_APP_API_URL;
+
   axios
-    .get(`${process.env.NEXT_PUBLIC_API_URL}/is-movie-saved?id_user=${id_user}&id_movie=${id_movie}&nocache=${new Date().getTime()}`)
+    .get(`${url}/is-movie-saved?id_user=${id_user}&id_movie=${id_movie}&nocache=${new Date().getTime()}`)
     .then((res) => {
       if (res.data.isSaved) {
         setSavedModal(false);
@@ -35,9 +37,10 @@ function Categoria({ name, release_year, image, id_movie, id_user, update }) {
 
 
   const saveMovie = (id_user, id_movie) => {
+    const url = process.env.REACT_APP_API_URL;
     const payload = { id_user, id_movie };
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/user-save-movie`, payload)
+      .post(`${url}/user-save-movie`, payload)
       .then((res) => {
         if (res.data.message === "Success") {
           setSavedModal(false);
@@ -59,9 +62,10 @@ function Categoria({ name, release_year, image, id_movie, id_user, update }) {
   };
 
   const deleteMovie = (id_user, id_movie) => {
+    const url = process.env.REACT_APP_API_URL;
 
     axios
-      .delete(`${process.env.NEXT_PUBLIC_API_URL}/user-delete-movie/${id_user}/${id_movie}`)
+      .delete(`${url}/user-delete-movie/${id_user}/${id_movie}`)
       .then((res) => {
         if (res.data.message === "Deleted") {
           setDeleteModal(false)
