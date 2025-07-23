@@ -30,12 +30,13 @@ function Page() {
     setEditGenre({open: false, data: {}})
   }
   const handleDeleteGenre = (id) =>{
-    setDeleteGenre(true)
+    setDeleteGenre(!deleteGenre)
     axios.delete(`http://localhost:8081/delete-genre/${id}`)
     .then((res)=>{
         showSuccess(res.data.message)
       })
     .catch((err)=>console.log(err))
+    setDeleteGenre(!deleteGenre)
   }
   return (
     <div className="p-8">
