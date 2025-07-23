@@ -43,6 +43,7 @@ function Login() {
         })
         .catch((err) => console.log(err));
     }
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
   };
 
   return (
