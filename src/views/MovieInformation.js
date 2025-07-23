@@ -15,19 +15,19 @@ function Movie() {
   const [idActorSelected, setIdActorSelected] = useState(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/movie-id?id=${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-id?id=${id}`)
       .then((res) => {
         setInfoMovie(res.data);
       })
       .catch((err) => console.error(err));
     axios
-      .get(`http://localhost:8081/movie-by-genres?id=${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-by-genres?id=${id}`)
       .then((res) => {
         setCategories(res.data);
       })
       .catch((err) => console.error(err));
     axios
-      .get(`http://localhost:8081/movie-by-companies?id=${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-by-companies?id=${id}`)
       .then((res) => {
         setCompanies(res.data);
       })
@@ -35,7 +35,7 @@ function Movie() {
         console.error(err);
       });
     axios
-      .get(`http://localhost:8081/actors-by-movie?id=${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/actors-by-movie?id=${id}`)
       .then((res) => {
         setActors(res.data);
       })

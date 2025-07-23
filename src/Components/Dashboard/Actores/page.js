@@ -13,7 +13,7 @@ function Page() {
   const [updateActor, setUpdateAddActor] = useState({view: false, update: false});
   const [deleteActor, serDeleteActor] = useState(false);
   useEffect(() => {
-    axios.get("http://localhost:8081/get-all-actors")
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-actors`)
     .then((res)=>{
       setActors(res.data.data);
     }
@@ -51,7 +51,7 @@ function Page() {
     setEditActor({id,name,image_actor,biography,date_of_birth})
   }
   const handleDelteActor = (id) =>{
-    axios.delete(`http://localhost:8081/delete-actor/${id}`)
+    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-actor/${id}`)
     .then((res)=>{
       showSuccess(res.data.message);
       serDeleteActor(true)

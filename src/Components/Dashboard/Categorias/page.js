@@ -12,7 +12,7 @@ function Page() {
   const [editGenre, setEditGenre] = useState({open: false, data: {}});
   const [deleteGenre,setDeleteGenre] = useState(false);
   useEffect(()=>{
-    axios.get("http://localhost:8081/get-all-genres")
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-genres`)
     .then((res)=>{
       console.log(res.data.message)
       setGenres(res.data.data)
@@ -31,7 +31,7 @@ function Page() {
   }
   const handleDeleteGenre = (id) =>{
     setDeleteGenre(!deleteGenre)
-    axios.delete(`http://localhost:8081/delete-genre/${id}`)
+    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-genre/${id}`)
     .then((res)=>{
         showSuccess(res.data.message)
       })

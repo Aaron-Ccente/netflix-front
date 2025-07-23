@@ -40,7 +40,7 @@ function FormEditMovie({ open, data }) {
     if (!isBase64Poster) setNobase64Image(urlPosterNoBase64);
     if (!isBase64Background) setNobase64ImageBackground(urlBackgroundNoBase64);
     axios
-      .get("http://localhost:8081/getGenreCompanyAndActors")
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/getGenreCompanyAndActors`)
       .then((res) => {
         setGenresSelectInfo(res.data.genres);
         setCompaniesSelectInfo(res.data.companies);
@@ -174,7 +174,7 @@ function FormEditMovie({ open, data }) {
     };
 
     axios
-      .put(`http://localhost:8081/update-movie/${data.id}`, movieData)
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/update-movie/${data.id}`, movieData)
       .then((res) => {
         if (res.data.success) {
           showSuccess(res.data.message);

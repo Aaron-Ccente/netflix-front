@@ -15,16 +15,16 @@ function Home() {
 
   useEffect(() => {
     
-    axios.get("http://localhost:8081/movies").then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movies`).then((res) => {
       setMovies(res.data);
     });
-    axios.get("http://localhost:8081/genre").then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/genre`).then((res) => {
       setGenres(res.data);
     });
-    axios.get("http://localhost:8081/movie_genrs").then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movie_genrs`).then((res) => {
       setMovieGenres(res.data);
     });
-    axios.get(`http://localhost:8081/userId-of-person?id_persona=${user?.id}`)
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/userId-of-person?id_persona=${user?.id}`)
     .then((res)=>setIdUser(res.data))
     .catch((err)=>console.error(err))
   }, [user?.id, update]);

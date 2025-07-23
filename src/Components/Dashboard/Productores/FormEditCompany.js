@@ -20,7 +20,7 @@ function FormEditCompany({ data, onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put("http://localhost:8081/update-company", values)
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/update-company`, values)
       .then((res) => {
         if (res.status === 200) {
           showSuccess(res.data.message);

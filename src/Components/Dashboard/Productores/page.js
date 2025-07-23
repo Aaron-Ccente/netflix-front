@@ -16,7 +16,7 @@ function Page() {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:8081/get-all-companies")
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-companies`)
       .then((res) => {
         if (res.status === 200) {
           setAllCompanies(res.data.message);
@@ -31,7 +31,7 @@ function Page() {
     setEditCompany({open: false, data: {}})
   }
   const handleDeleteCompany = (id) =>{
-    axios.delete(`http://localhost:8081/delete-company/${id}`)
+    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-company/${id}`)
     .then((res)=>{
       setDeleteCompany(true);
       showSuccess(res.data.message)

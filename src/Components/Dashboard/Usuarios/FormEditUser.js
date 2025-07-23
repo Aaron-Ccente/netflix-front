@@ -43,7 +43,7 @@ function FormEditUser({ data, viewModal, onClose }) {
       !validationErrors.email &&
       !validationErrors.password
     ) {
-      axios.put(`http://localhost:8081/update-user/${data.id}`,values)
+      axios.put(`${process.env.NEXT_PUBLIC_API_URL}/update-user/${data.id}`,values)
       .then((res)=>{
         if(res.status === 200) showSuccess('Usuario actualizado correctamente');
         onClose()

@@ -17,7 +17,7 @@ function Categoria({ name, release_year, image, id_movie, id_user, update }) {
   };
  useEffect(() => {
   axios
-    .get(`http://localhost:8081/is-movie-saved?id_user=${id_user}&id_movie=${id_movie}&nocache=${new Date().getTime()}`)
+    .get(`${process.env.NEXT_PUBLIC_API_URL}/is-movie-saved?id_user=${id_user}&id_movie=${id_movie}&nocache=${new Date().getTime()}`)
     .then((res) => {
       if (res.data.isSaved) {
         setSavedModal(false);

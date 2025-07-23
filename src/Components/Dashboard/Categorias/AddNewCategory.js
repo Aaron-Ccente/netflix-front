@@ -19,7 +19,7 @@ function AddNewCategory({ viewModal }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8081/create-genre", values)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/create-genre`, values)
       .then((res) => {
         if (res.status === 200) {
           showSuccess(res.data.message)
