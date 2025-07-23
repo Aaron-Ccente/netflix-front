@@ -11,7 +11,7 @@ function Favoritos() {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/favorite-saved-user?id_user=${id_persona}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/favorite-saved-user?id_user=${id_persona}`)
       .then((res) => {
         setMovies(res.data);
       })
@@ -20,7 +20,7 @@ function Favoritos() {
 
   const deleteFavoriteMovie = (id_user, id_movie) => {
     axios
-      .delete(`http://localhost:8081/user-delete-movie/${id_user}/${id_movie}`)
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/user-delete-movie/${id_user}/${id_movie}`)
       .then((res) => {
         if (res.data.message === "Deleted") {
           alert("Pelicula eliminada");

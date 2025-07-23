@@ -37,12 +37,12 @@ function Signup() {
       !validationErrors.password
     ) {
       axios
-        .post("http://localhost:8081/signup", values)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/signup`, values)
         .then((res) => {
           if(res.statusText === "OK")
           {
             axios
-            .post("http://localhost:8081/login", {email: values.email, password: values.password})
+            .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {email: values.email, password: values.password})
             .then((res) => {
               if (res.data.message === "Success") {
                 login(res.data.user);

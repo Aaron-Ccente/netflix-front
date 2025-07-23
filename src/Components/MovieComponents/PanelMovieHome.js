@@ -15,19 +15,19 @@ function PanelMovie({ id, backgroundImage, posterImage }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/movie-id?id=${infoID}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-id?id=${infoID}`)
       .then((res) => {
         setInfoMovie(res.data);
       })
       .catch((err) => console.error(err));
     axios
-    .get(`http://localhost:8081/movie-by-genres?id=${infoID}`)
+    .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-by-genres?id=${infoID}`)
       .then((res) => {
         setCategories(res.data);
       })
       .catch((err) => console.error(err));
     axios
-      .get(`http://localhost:8081/movie-by-companies?id=${infoID}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/movie-by-companies?id=${infoID}`)
       .then((res)=>{
         setCompanies(res.data);
       })

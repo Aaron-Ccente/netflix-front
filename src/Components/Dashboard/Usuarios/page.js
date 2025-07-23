@@ -16,7 +16,7 @@ function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:8081/all-users');
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-users`);
         setUsers(res.data)
       } catch (error) {
         console.error('Error al obtener usuarios:', error);
@@ -27,9 +27,9 @@ function Page() {
   }, [addUser,modalEdit]);
 
   const handleDeleteUser = async (id) =>{
-    await axios.delete(`http://127.0.0.1:8081/delete-user/${id}`)
+    await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-user/${id}`)
     try {
-        const res = await axios.get('http://127.0.0.1:8081/all-users');
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-users`);
         setUsers(res.data)
         showSuccess('Usuario eliminado correctamente')
       } catch (error) {

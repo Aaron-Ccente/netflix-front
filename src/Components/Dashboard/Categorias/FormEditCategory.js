@@ -20,7 +20,7 @@ function FormEditCategory({ data, onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`http://localhost:8081/update-genre/${values.id}`, values)
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/update-genre/${values.id}`, values)
       .then((res) => {
         if (res.status === 200) {
           showSuccess(res.data.message)

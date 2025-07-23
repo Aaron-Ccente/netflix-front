@@ -47,7 +47,7 @@ function AddNewActor({ viewModal }) {
       ...values,
       image_actor: base64Image,
     };
-    axios.post("http://localhost:8081/create-actor", actorData)
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-actor`, actorData)
       .then((res) => {
         showSuccess(res.data.message);
         setValues({

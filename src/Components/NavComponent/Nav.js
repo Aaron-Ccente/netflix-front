@@ -24,7 +24,7 @@ function Nav() {
   useEffect(() => {
     if (!user?.id) return;
     axios
-      .get(`http://localhost:8081/userId-of-person?id_persona=${user?.id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/userId-of-person?id_persona=${user?.id}`)
       .then((res) => {setIdUser(res.data[0].id_user);})
       .catch((err) => console.log(err));
   }, [user?.id]);

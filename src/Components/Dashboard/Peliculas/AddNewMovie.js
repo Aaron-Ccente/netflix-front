@@ -148,7 +148,7 @@ function AddNewMovie({ open }) {
       movie_actors,
     };
     axios
-      .post("http://localhost:8081/create-movie", movieData)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/create-movie`, movieData)
       .then((response) => {
         if(response.status === 200){
           open(false, true)
