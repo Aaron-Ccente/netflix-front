@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { validation } from "../Components/LoginComponents/LoginValidation.js";
 import { useAuth } from "../context/AuthContext.js";
 import axios from "axios";
-import imageBackground from "../imagenes/backgroundGrande.webp";
 import NavInLoginAndRegister from "../Components/NavComponent/NavInLoginAndRegister.js";
 function Login() {
-  
+  const imageBackground = "/backgroundGrande.webp";
   const { login } = useAuth();
   const [values, setValues] = useState({
     email: "",
