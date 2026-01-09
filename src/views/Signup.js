@@ -2,11 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { validation } from "../Components/SignUpComponents/SignupValidation";
 import { useState } from "react";
 import axios from "axios";
-import imageBackground from '../imagenes/backgroundGrande.webp'
 import NavInLoginAndRegister from "../Components/NavComponent/NavInLoginAndRegister";
 import PasswordSegurity from "../Components/SignUpComponents/PasswordSegurity";
 import { useAuth } from "../context/AuthContext";
 function Signup() {
+  const imageBackground = "/backgroundGrande.webp";
   const { login } = useAuth();
   const [values, setValues] = useState({
     name: "",
